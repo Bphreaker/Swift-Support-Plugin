@@ -80,11 +80,10 @@ module.exports = function(context) {
       console.log('Update IOS project deployment target to:', IOS_MIN_DEPLOYMENT_TARGET);
     }
 
-    xcodeProject.updateBuildProperty('EMBEDDED_CONTENT_CONTAINS_SWIFT', 'YES');
-    console.log('Update IOS build setting EMBEDDED_CONTENT_CONTAINS_SWIFT to: YES');
-
-    // xcodeProject.updateBuildProperty('LD_RUNPATH_SEARCH_PATHS','"@executable_path/Frameworks"');
-    // console.log('Update IOS build setting LD_RUNPATH_SEARCH_PATHS to: @executable_path/Frameworks');
+    if(xcodeProject.getBuildProperty('EMBEDDED_CONTENT_CONTAINS_SWIFT') !== 'YES'){
+      xcodeProject.updateBuildProperty('EMBEDDED_CONTENT_CONTAINS_SWIFT', 'YES');
+      console.log('Update IOS build setting EMBEDDED_CONTENT_CONTAINS_SWIFT to: YES');
+    }
 
     fs.writeFileSync(pbxprojPath, xcodeProject.writeSync());
   });

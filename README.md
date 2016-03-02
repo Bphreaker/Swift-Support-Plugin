@@ -9,7 +9,7 @@ Add it as a dependency in the `plugin.xml` file of your iOS plugin :
 
 If needed, add a Bridging-Header file in your plugin in order to import frameworks.
 
-As an exemple, you can have a look  [here](https://www.npmjs.com/package/cordova-plugin-dbmeter).
+As an exemple, you can have a look  [here](https://github.com/akofman/cordova-plugin-dbmeter).
 
 ## License
 
