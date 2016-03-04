@@ -10,6 +10,6 @@
   <repo>https://github.com/akofman/cordova-plugin-add-swift-support.git</repo>
 
   <platform name="ios">
-    <hook type="after_plugin_install" src="src/add-swift-support.js" />
+    <hook type="after_platform_add" src="src/add-swift-support.js" />
   </platform>
 </plugin>

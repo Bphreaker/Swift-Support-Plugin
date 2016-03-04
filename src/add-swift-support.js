@@ -139,12 +139,14 @@ function getBridgingHeaderPath(context, projectPath, iosPlatformVersion) {
   if(semver.lt(iosPlatformVersion, '4.0.0')) {
     bridgingHeaderPath = path.join(projectPath, 'Plugins', 'Bridging-Header.h');
   } else {
-    bridgingHeaderPath =  path.join(projectPath, 'Bridging-Header.h');
+    bridgingHeaderPath = path.join(projectPath, 'Bridging-Header.h');
   }
 
   return bridgingHeaderPath;
 }
 
 function unquote(str) {
-  if (str) return str.replace(/^"(.*)"$/, '$1');
+  if (str) {
+    return str.replace(/^"(.*)"$/, '$1');
+  }
 }
