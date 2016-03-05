@@ -6,7 +6,8 @@ This [Cordova plugin](https://www.npmjs.com/package/cordova-plugin-add-swift-sup
 
 `cordova plugin add cordova-plugin-add-swift-support --save`
 
-If needed, add a Bridging-Header file in your plugin in order to import frameworks.
+If needed, add a prefixed Bridging-Header file in your plugin in order to import frameworks (MyPlugin-Bridging-Header.h for instance).
+As an example you can have a look to this [plugin](https://github.com/akofman/cordova-plugin-dbmeter).
 
 ## License
 
