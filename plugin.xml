@@ -9,7 +9,5 @@
   <keywords>cordova,phonegap,swift,plugin</keywords>
   <repo>https://github.com/akofman/cordova-plugin-add-swift-support.git</repo>
 
-  <platform name="ios">
-    <hook type="after_platform_add" src="src/add-swift-support.js" />
-  </platform>
+  <hook type="after_prepare" src="src/add-swift-support.js" />
 </plugin>

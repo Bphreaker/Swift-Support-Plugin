@@ -43,7 +43,6 @@ module.exports = function(context) {
     });
 
     if(!iosPlatformVersion) {
-      console.log('ERROR');
       return;
     }
 
