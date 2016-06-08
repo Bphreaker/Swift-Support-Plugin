@@ -13,7 +13,6 @@
 *  - It updates the EMBEDDED_CONTENT_CONTAINS_SWIFT build setting to YES.
 */
 
-var child_process = require('child_process');
 var fs = require('fs');
 var path = require('path');
 var xcode = require('xcode');
@@ -21,9 +20,9 @@ var xcode = require('xcode');
 module.exports = function(context) {
   var platformMetadata = context.requireCordovaModule('cordova-lib/src/cordova/platform_metadata');
   var projectRoot = context.opts.projectRoot;
+  var glob = context.requireCordovaModule('glob');
 
   platformMetadata.getPlatformVersions(projectRoot).then(function(platformVersions) {
-    var _ = context.requireCordovaModule('underscore');
     var IOS_MIN_DEPLOYMENT_TARGET = '7.0';
     var platformPath = path.join(projectRoot, 'platforms', 'ios');
 
@@ -76,12 +75,11 @@ module.exports = function(context) {
     }
 
     // Look for any bridging header defined in the plugin
-    child_process.exec('find . -name "*Bridging-Header*.h"', { cwd: pluginsPath }, function (error, stdout) {
-
+    glob('**/*Bridging-Header*.h', { cwd: pluginsPath }, function(error, files) {
       var bridgingHeader = path.basename(bridgingHeaderPath);
-      var headers = _.compact(stdout.toString().split('\n').map(function (filePath) {
+      var headers = files.map(function (filePath) {
         return path.basename(filePath);
-      }));
+      });
 
       // if other bridging headers are found, they are imported in the
       // one already configured in the project.
