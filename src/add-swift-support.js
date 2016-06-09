@@ -133,9 +133,9 @@ function getBridgingHeaderPath(context, projectPath, iosPlatformVersion) {
   var semver = context.requireCordovaModule('semver');
   var bridgingHeaderPath;
   if(semver.lt(iosPlatformVersion, '4.0.0')) {
-    bridgingHeaderPath = path.join(projectPath, 'Plugins', 'Bridging-Header.h');
+    bridgingHeaderPath = path.posix.join(projectPath, 'Plugins', 'Bridging-Header.h');
   } else {
-    bridgingHeaderPath = path.join(projectPath, 'Bridging-Header.h');
+    bridgingHeaderPath = path.posix.join(projectPath, 'Bridging-Header.h');
   }
 
   return bridgingHeaderPath;
