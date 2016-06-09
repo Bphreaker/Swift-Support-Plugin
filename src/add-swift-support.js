@@ -53,25 +53,25 @@ module.exports = function(context) {
 
     xcodeProject.parseSync();
 
-    bridgingHeaderPath = unquote(xcodeProject.getBuildProperty('SWIFT_OBJC_BRIDGING_HEADER'));
+    bridgingHeaderPath = getBridgingHeaderPath(context, projectPath, iosPlatformVersion);
 
     try{
       fs.statSync(bridgingHeaderPath);
     } catch(err) {
       // If the bridging header doesn't exist, we create it with the minimum
       // Cordova/CDV.h import.
-
-      bridgingHeaderPath = getBridgingHeaderPath(context, projectPath, iosPlatformVersion);
-
       bridgingHeaderContent = [ '//',
       '//  Use this file to import your target\'s public headers that you would like to expose to Swift.',
       '//',
       '#import <Cordova/CDV.h>' ];
-
       fs.writeFileSync(bridgingHeaderPath, bridgingHeaderContent.join('\n'), { encoding: 'utf-8', flag: 'w' });
       xcodeProject.addHeaderFile('Bridging-Header.h');
-      xcodeProject.updateBuildProperty('SWIFT_OBJC_BRIDGING_HEADER', '"' + bridgingHeaderPath + '"');
-      console.log('Update IOS build setting SWIFT_OBJC_BRIDGING_HEADER to:', bridgingHeaderPath);
+    }
+
+    var bridgingHeaderProperty = '"$(PROJECT_DIR)/$(PROJECT_NAME)' + bridgingHeaderPath.split(projectPath)[1] + '"';
+    if(xcodeProject.getBuildProperty('SWIFT_OBJC_BRIDGING_HEADER') !== bridgingHeaderProperty) {
+      xcodeProject.updateBuildProperty('SWIFT_OBJC_BRIDGING_HEADER', bridgingHeaderProperty);
+      console.log('Update IOS build setting SWIFT_OBJC_BRIDGING_HEADER to:', bridgingHeaderProperty);
     }
 
     // Look for any bridging header defined in the plugin
@@ -132,7 +132,6 @@ function getConfigParser(context, config) {
 function getBridgingHeaderPath(context, projectPath, iosPlatformVersion) {
   var semver = context.requireCordovaModule('semver');
   var bridgingHeaderPath;
-
   if(semver.lt(iosPlatformVersion, '4.0.0')) {
     bridgingHeaderPath = path.join(projectPath, 'Plugins', 'Bridging-Header.h');
   } else {
@@ -140,10 +139,4 @@ function getBridgingHeaderPath(context, projectPath, iosPlatformVersion) {
   }
 
   return bridgingHeaderPath;
-}
-
-function unquote(str) {
-  if (str) {
-    return str.replace(/^"(.*)"$/, '$1');
-  }
 }
