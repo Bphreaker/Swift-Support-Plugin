@@ -1,5 +1,7 @@
 # cordova-plugin-add-swift-support
 
+![swift-128x128](https://cloud.githubusercontent.com/assets/579922/15999501/79196b48-3146-11e6-836e-061a7ef53571.png)
+
 This [Cordova plugin](https://www.npmjs.com/package/cordova-plugin-add-swift-support) adds the Swift support to your iOS project.
 
 ## Installation
