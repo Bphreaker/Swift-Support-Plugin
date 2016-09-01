@@ -40,6 +40,11 @@ module.exports = function(context) {
       var pbxprojPath;
       var xcodeProject;
 
+      var COMMENT_KEY = /_comment$/;
+      var buildConfigs;
+      var buildConfig;
+      var configName;
+
       platformVersions.forEach(function(platformVersion) {
         if(platformVersion.platform === 'ios') {
           iosPlatformVersion = platformVersion.version;
@@ -73,10 +78,18 @@ module.exports = function(context) {
         xcodeProject.addHeaderFile('Bridging-Header.h');
       }
 
+      buildConfigs = xcodeProject.pbxXCBuildConfigurationSection();
+
       var bridgingHeaderProperty = '"$(PROJECT_DIR)/$(PROJECT_NAME)' + bridgingHeaderPath.split(projectPath)[1] + '"';
-      if(xcodeProject.getBuildProperty('SWIFT_OBJC_BRIDGING_HEADER') !== bridgingHeaderProperty) {
-        xcodeProject.updateBuildProperty('SWIFT_OBJC_BRIDGING_HEADER', bridgingHeaderProperty);
-        console.log('Update IOS build setting SWIFT_OBJC_BRIDGING_HEADER to:',xcodeProject.getBuildProperty('SWIFT_OBJC_BRIDGING_HEADER'), bridgingHeaderProperty);
+
+      for (configName in buildConfigs) {
+        if (!COMMENT_KEY.test(configName)) {
+          buildConfig = buildConfigs[configName];
+          if(xcodeProject.getBuildProperty('SWIFT_OBJC_BRIDGING_HEADER', buildConfig.name) !== bridgingHeaderProperty) {
+            xcodeProject.updateBuildProperty('SWIFT_OBJC_BRIDGING_HEADER', bridgingHeaderProperty, buildConfig.name);
+            console.log('Update IOS build setting SWIFT_OBJC_BRIDGING_HEADER to:', bridgingHeaderProperty, 'for build configuration', buildConfig.name);
+          }
+        }
       }
 
       // Look for any bridging header defined in the plugin
@@ -101,19 +114,24 @@ module.exports = function(context) {
         });
         fs.writeFileSync(bridgingHeaderPath, content, 'utf-8');
 
-        if(parseFloat(xcodeProject.getBuildProperty('IPHONEOS_DEPLOYMENT_TARGET')) < parseFloat(IOS_MIN_DEPLOYMENT_TARGET)) {
-          xcodeProject.updateBuildProperty('IPHONEOS_DEPLOYMENT_TARGET', IOS_MIN_DEPLOYMENT_TARGET);
-          console.log('Update IOS project deployment target to:', IOS_MIN_DEPLOYMENT_TARGET);
-        }
+        for (configName in buildConfigs) {
+          if (!COMMENT_KEY.test(configName)) {
+            buildConfig = buildConfigs[configName];
+            if(parseFloat(xcodeProject.getBuildProperty('IPHONEOS_DEPLOYMENT_TARGET', buildConfig.name)) < parseFloat(IOS_MIN_DEPLOYMENT_TARGET)) {
+              xcodeProject.updateBuildProperty('IPHONEOS_DEPLOYMENT_TARGET', IOS_MIN_DEPLOYMENT_TARGET, buildConfig.name);
+              console.log('Update IOS project deployment target to:', IOS_MIN_DEPLOYMENT_TARGET, 'for build configuration', buildConfig.name);
+            }
 
-        if(xcodeProject.getBuildProperty('EMBEDDED_CONTENT_CONTAINS_SWIFT') !== 'YES') {
-          xcodeProject.updateBuildProperty('EMBEDDED_CONTENT_CONTAINS_SWIFT', 'YES');
-          console.log('Update IOS build setting EMBEDDED_CONTENT_CONTAINS_SWIFT to: YES');
-        }
+            if(xcodeProject.getBuildProperty('EMBEDDED_CONTENT_CONTAINS_SWIFT', buildConfig.name) !== 'YES') {
+              xcodeProject.updateBuildProperty('EMBEDDED_CONTENT_CONTAINS_SWIFT', 'YES', buildConfig.name);
+              console.log('Update IOS build setting EMBEDDED_CONTENT_CONTAINS_SWIFT to: YES', 'for build configuration', buildConfig.name);
+            }
 
-        if(xcodeProject.getBuildProperty('LD_RUNPATH_SEARCH_PATHS') !== '"@executable_path/Frameworks"') {
-          xcodeProject.updateBuildProperty('LD_RUNPATH_SEARCH_PATHS','"@executable_path/Frameworks"');
-          console.log('Update IOS build setting LD_RUNPATH_SEARCH_PATHS to: @executable_path/Frameworks');
+            if(xcodeProject.getBuildProperty('LD_RUNPATH_SEARCH_PATHS', buildConfig.name) !== '"@executable_path/Frameworks"') {
+              xcodeProject.updateBuildProperty('LD_RUNPATH_SEARCH_PATHS','"@executable_path/Frameworks"', buildConfig.name);
+              console.log('Update IOS build setting LD_RUNPATH_SEARCH_PATHS to: @executable_path/Frameworks', 'for build configuration', buildConfig.name);
+            }
+          }
         }
 
         fs.writeFileSync(pbxprojPath, xcodeProject.writeSync());
