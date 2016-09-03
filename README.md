@@ -12,7 +12,7 @@ You can add this plugin directly to your project :
 
 Or add it as a dependency into your own plugin :
 
-`<dependency id="cordova-plugin-add-swift-support" version="1.3.1"/>`
+`<dependency id="cordova-plugin-add-swift-support" version="1.3.2"/>`
 
 If needed, add a prefixed Bridging-Header file in your plugin in order to import frameworks (MyPlugin-Bridging-Header.h for instance).
 As an example you can have a look at this [plugin](https://github.com/akofman/cordova-plugin-permissionScope).
