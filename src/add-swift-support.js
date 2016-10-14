@@ -32,6 +32,7 @@ module.exports = function (context) {
     platformMetadata.getPlatformVersions(projectRoot).then(function (platformVersions) {
       var IOS_MIN_DEPLOYMENT_TARGET = '7.0';
       var platformPath = path.join(projectRoot, 'platforms', 'ios');
+      var config = getConfigParser(context, path.join(projectRoot, 'config.xml'));
 
       var bridgingHeaderPath;
       var bridgingHeaderContent;
@@ -57,7 +58,7 @@ module.exports = function (context) {
         return;
       }
 
-      projectName = getConfigParser(context, path.join(projectRoot, 'config.xml')).name();
+      projectName = config.name();
       projectPath = path.join(platformPath, projectName);
       pbxprojPath = path.join(platformPath, projectName + '.xcodeproj', 'project.pbxproj');
       xcodeProject = xcode.project(pbxprojPath);
@@ -137,8 +138,13 @@ module.exports = function (context) {
             }
 
             if (typeof xcodeProject.getBuildProperty('SWIFT_VERSION', buildConfig.name) === 'undefined') {
-              xcodeProject.updateBuildProperty('SWIFT_VERSION', '3.0', buildConfig.name);
-              console.log('Update SWIFT version to', 3.0, buildConfig.name);
+              if (config.getPreference('UseLegacySwiftLanguageVersion', 'ios')) {
+                xcodeProject.updateBuildProperty('SWIFT_VERSION', '2.3', buildConfig.name);
+                console.log('Use legacy Swift language version', buildConfig.name);
+              } else {
+                xcodeProject.updateBuildProperty('SWIFT_VERSION', '3.0', buildConfig.name);
+                console.log('Update SWIFT version to 3.0', buildConfig.name);
+              }
             }
           }
         }
@@ -149,7 +155,7 @@ module.exports = function (context) {
   }
 };
 
-function getConfigParser (context, config) {
+function getConfigParser (context, configPath) {
   var semver = context.requireCordovaModule('semver');
   var ConfigParser;
 
@@ -159,7 +165,7 @@ function getConfigParser (context, config) {
     ConfigParser = context.requireCordovaModule('cordova-common/src/ConfigParser/ConfigParser');
   }
 
-  return new ConfigParser(config);
+  return new ConfigParser(configPath);
 }
 
 function getBridgingHeaderPath (context, projectPath, iosPlatformVersion) {

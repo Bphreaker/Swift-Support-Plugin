@@ -6,18 +6,23 @@ This [Cordova plugin](https://www.npmjs.com/package/cordova-plugin-add-swift-sup
 
 ## Installation
 
-You can add this plugin directly to your project :
+You can add this plugin directly to your project:
 
 `cordova plugin add cordova-plugin-add-swift-support --save`
 
-Or add it as a dependency into your own plugin :
+Or add it as a dependency into your own plugin:
 
 `<dependency id="cordova-plugin-add-swift-support" version="1.4.0"/>`
+
+By default, the Swift 3 support is added but the legacy version (2.3) can still be configured as a preference:
+
+`<preference name="UseLegacySwiftLanguageVersion" value="true" />`
 
 If needed, add a prefixed Bridging-Header file in your plugin in order to import frameworks (MyPlugin-Bridging-Header.h for instance).
 As an example you can have a look at this [plugin](https://github.com/akofman/cordova-plugin-permissionScope).
 
 If the `cordova-plugin-add-swift-support` plugin is already installed to your project, then you can add your own Swift plugin as usual, its prefixed Bridging-Header will be automatically found and merged.
+
 
 ## License
 
