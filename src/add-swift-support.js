@@ -146,6 +146,13 @@ module.exports = function (context) {
                 console.log('Update SWIFT version to 3.0', buildConfig.name);
               }
             }
+
+            if (buildConfig.name === 'Debug') {
+              if (xcodeProject.getBuildProperty('SWIFT_OPTIMIZATION_LEVEL', buildConfig.name) !== '"-Onone"') {
+                xcodeProject.updateBuildProperty('SWIFT_OPTIMIZATION_LEVEL', '"-Onone"', buildConfig.name);
+                console.log('Update IOS build setting SWIFT_OPTIMIZATION_LEVEL to: -Onone', 'for build configuration', buildConfig.name);
+              }
+            }
           }
         }
 
