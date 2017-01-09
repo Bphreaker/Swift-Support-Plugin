@@ -29,7 +29,7 @@
   ],
   "license": "Apache-2.0",
   "dependencies": {
-    "xcode": "^0.8.3"
+    "xcode": "0.8.3"
   },
   "bundledDependencies": [
     "xcode"
