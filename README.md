@@ -12,7 +12,7 @@ You can add this plugin directly to your project:
 
 Or add it as a dependency into your own plugin:
 
-`<dependency id="cordova-plugin-add-swift-support" version="1.6.0"/>`
+`<dependency id="cordova-plugin-add-swift-support" version="1.6.1"/>`
 
 By default, the Swift 3 support is added but the legacy version (2.3) can still be configured as a preference:
 
@@ -23,6 +23,10 @@ As an example you can have a look at this [plugin](https://github.com/akofman/co
 
 If the `cordova-plugin-add-swift-support` plugin is already installed to your project, then you can add your own Swift plugin as usual, its prefixed Bridging-Header will be automatically found and merged.
 
+## Contributing
+
+The src folder contains ECMAScript 2015 source files.
+This project is built and bundled using [Babel](https://babeljs.io/) and [Webpack](https://webpack.js.org/).
 
 ## License
 
