@@ -1,6 +1,6 @@
 {
   "name": "cordova-plugin-add-swift-support",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "description": "Add Swift support to your iOS plugins",
   "homepage": "https://github.com/akofman/cordova-plugin-add-swift-support",
   "author": {
@@ -28,19 +28,20 @@
     "cordova:plugin"
   ],
   "license": "Apache-2.0",
-  "dependencies": {
-    "xcode": "0.8.3"
-  },
-  "bundledDependencies": [
-    "xcode"
-  ],
   "devDependencies": {
-    "eslint": "^3.4.0",
-    "eslint-config-standard": "^6.0.0",
-    "eslint-plugin-promise": "^2.0.1",
-    "eslint-plugin-standard": "^2.0.0"
+    "babel-core": "^6.21.0",
+    "babel-loader": "^6.2.10",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-preset-es2015": "^6.18.0",
+    "eslint": "^3.13.1",
+    "eslint-config-standard": "^6.2.1",
+    "eslint-plugin-promise": "^3.4.0",
+    "eslint-plugin-standard": "^2.0.0",
+    "webpack": "^2.2.0-rc.3",
+    "xcode": "0.9.1"
   },
   "scripts": {
+    "build": "webpack --config webpack.config.js",
     "test": "eslint src"
   }
 }
