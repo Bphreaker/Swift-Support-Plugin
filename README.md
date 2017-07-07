@@ -18,6 +18,10 @@ By default, the Swift 3 support is added but the legacy version (2.3) can still 
 
 `<preference name="UseLegacySwiftLanguageVersion" value="true" />`
 
+Or it is possible to specify the version as following:
+
+`<preference name="UseSwiftLanguageVersion" value="4" />`
+
 If needed, add a prefixed Bridging-Header file in your plugin in order to import frameworks (MyPlugin-Bridging-Header.h for instance).
 As an example you can have a look at this [plugin](https://github.com/akofman/cordova-plugin-permissionScope).
 
