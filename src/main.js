@@ -23,33 +23,13 @@ import childProcess from 'child_process';
 export default (context) => {
   const projectRoot = context.opts.projectRoot;
   const glob = context.requireCordovaModule('glob');
-  const cordovaUtil = context.requireCordovaModule('cordova-lib/src/cordova/util');
-  const Q = context.requireCordovaModule('q');
-  const getPlatformVersionsFromFileSystem = (projectRoot) => {
-    var platformsOnFs = cordovaUtil.listPlatforms(projectRoot);
-    var platformVersions = platformsOnFs.map(function (platform) {
-      var script = path.join(projectRoot, 'platforms', platform, 'cordova', 'version');
-      return Q.ninvoke(childProcess, 'exec', script, {}).then(function (result) {
-        var version = result[0];
-
-        // clean the version we get back from the script
-        // This is necessary because the version script uses console.log to pass back
-        // the version. Using console.log ends up adding additional line breaks/newlines to the value returned.
-        // ToDO: version scripts should be refactored to not use console.log()
-        var versionCleaned = version.replace(/\r?\n|\r/g, '');
-        return {platform: platform, version: versionCleaned};
-      });
-    });
-
-    return Q.all(platformVersions);
-  };
 
   // This script has to be executed depending on the command line arguments, not
   // on the hook execution cycle.
   if ((context.hook === 'after_platform_add' && context.cmdLine.includes('platform add')) ||
   (context.hook === 'after_prepare' && context.cmdLine.includes('prepare')) ||
   (context.hook === 'after_plugin_add' && context.cmdLine.includes('plugin add'))) {
-    getPlatformVersionsFromFileSystem(projectRoot).then((platformVersions) => {
+    getPlatformVersionsFromFileSystem(context, projectRoot).then((platformVersions) => {
       const IOS_MIN_DEPLOYMENT_TARGET = '7.0';
       const platformPath = path.join(projectRoot, 'platforms', 'ios');
       const config = getConfigParser(context, path.join(projectRoot, 'config.xml'));
@@ -209,4 +189,20 @@ const getBridgingHeaderPath = (context, projectPath, iosPlatformVersion) => {
   }
 
   return bridgingHeaderPath;
+};
+
+const getPlatformVersionsFromFileSystem = (context, projectRoot) => {
+  const cordovaUtil = context.requireCordovaModule('cordova-lib/src/cordova/util');
+  const Q = context.requireCordovaModule('q');
+  const platformsOnFs = cordovaUtil.listPlatforms(projectRoot);
+  const platformVersions = platformsOnFs.map((platform) => {
+    const script = path.join(projectRoot, 'platforms', platform, 'cordova', 'version');
+    return Q.ninvoke(childProcess, 'exec', script, {}).then((result) => {
+      const version = result[0];
+      const versionCleaned = version.replace(/\r?\n|\r/g, '');
+      return {platform: platform, version: versionCleaned};
+    });
+  });
+
+  return Q.all(platformVersions);
 };
