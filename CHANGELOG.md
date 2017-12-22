@@ -1,5 +1,24 @@
 # Change Log
 
+## [1.7.1](https://github.com/akofman/cordova-plugin-add-swift-support/tree/1.7.1) (2017-12-22)
+[Full Changelog](https://github.com/akofman/cordova-plugin-add-swift-support/compare/1.7.0...1.7.1)
+
+**Closed issues:**
+
+- SWIFT\_VERSION build setting not being applied [\#42](https://github.com/akofman/cordova-plugin-add-swift-support/issues/42)
+- Node.JS 8.X Support [\#38](https://github.com/akofman/cordova-plugin-add-swift-support/issues/38)
+- Missing tag and changelog for 1.7.0 [\#33](https://github.com/akofman/cordova-plugin-add-swift-support/issues/33)
+- Unhandled promise rejection \(rejection id: 1\): Error: Cannot find module '../cordova/platform\_metadata' [\#44](https://github.com/akofman/cordova-plugin-add-swift-support/issues/44)
+- Can not restore this plugin when using cordova-cli@8.0.0  [\#43](https://github.com/akofman/cordova-plugin-add-swift-support/issues/43)
+- Hook won't trigger [\#40](https://github.com/akofman/cordova-plugin-add-swift-support/issues/40)
+- Error adding cordova-plugin-add-swift-support [\#39](https://github.com/akofman/cordova-plugin-add-swift-support/issues/39)
+- OSX support [\#19](https://github.com/akofman/cordova-plugin-add-swift-support/issues/19)
+
+**Merged pull requests:**
+
+- fix\(\): platform\_metadata is now project\_metadata [\#45](https://github.com/akofman/cordova-plugin-add-swift-support/pull/45) ([mhartington](https://github.com/mhartington))
+- add OSX paltform support [\#37](https://github.com/akofman/cordova-plugin-add-swift-support/pull/37) ([tryadelion](https://github.com/tryadelion))
+
 ## [1.7.0](https://github.com/akofman/cordova-plugin-add-swift-support/tree/1.7.0) (2017-07-07)
 [Full Changelog](https://github.com/akofman/cordova-plugin-add-swift-support/compare/1.6.0...1.7.0)
 
