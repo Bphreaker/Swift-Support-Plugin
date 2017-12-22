@@ -1,6 +1,6 @@
 {
   "name": "cordova-plugin-add-swift-support",
-  "version": "1.7.0",
+  "version": "1.7.1",
   "description": "Add Swift support to your iOS plugins",
   "homepage": "https://github.com/akofman/cordova-plugin-add-swift-support",
   "author": {
