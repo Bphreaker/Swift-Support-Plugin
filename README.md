@@ -1,4 +1,6 @@
-# cordova-plugin-add-swift-support [![Build Status](https://travis-ci.org/akofman/cordova-plugin-add-swift-support.svg?branch=master)](https://travis-ci.org/akofman/cordova-plugin-add-swift-support) [![npm](https://img.shields.io/npm/v/cordova-plugin-add-swift-support.svg?maxAge=2592000)](https://www.npmjs.com/package/cordova-plugin-add-swift-support)
+[![npm version](https://badge.fury.io/js/cordova-plugin-add-swift-support.svg)](https://badge.fury.io/js/cordova-plugin-add-swift-support) [![Build Status](https://travis-ci.org/akofman/cordova-plugin-add-swift-support.svg?branch=master)](https://travis-ci.org/akofman/cordova-plugin-add-swift-support) [![npm](https://img.shields.io/npm/dm/cordova-plugin-add-swift-support.svg)]()
+
+# cordova-plugin-add-swift-support 
 
 ![swift-128x128](https://cloud.githubusercontent.com/assets/579922/15999501/79196b48-3146-11e6-836e-061a7ef53571.png)
 
@@ -34,4 +36,4 @@ This project is built and bundled using [Babel](https://babeljs.io/) and [Webpac
 
 ## License
 
-Apache-2.0 © [Alexis Kofman](http://twitter.com/alexiskofman)
+MIT
