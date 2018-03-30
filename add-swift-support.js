@@ -12922,10 +12922,13 @@ var getPlatformVersionsFromFileSystem = function getPlatformVersionsFromFileSyst
   var platformsOnFs = cordovaUtil.listPlatforms(projectRoot);
   var platformVersions = platformsOnFs.map(function (platform) {
     var script = _path2.default.join(projectRoot, 'platforms', platform, 'cordova', 'version');
-    return Q.ninvoke(_child_process2.default, 'exec', script, {}).then(function (result) {
+    return Q.ninvoke(_child_process2.default, 'exec', '"' + script + '"', {}).then(function (result) {
       var version = result[0];
       var versionCleaned = version.replace(/\r?\n|\r/g, '');
       return { platform: platform, version: versionCleaned };
+    }, function (error) {
+      console.log(error);
+      process.exit(1);
     });
   });
 

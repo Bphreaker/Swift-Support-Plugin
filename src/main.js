@@ -197,7 +197,7 @@ const getPlatformVersionsFromFileSystem = (context, projectRoot) => {
   const platformsOnFs = cordovaUtil.listPlatforms(projectRoot);
   const platformVersions = platformsOnFs.map((platform) => {
     const script = path.join(projectRoot, 'platforms', platform, 'cordova', 'version');
-    return Q.ninvoke(childProcess, 'exec', '"' + script + '"', {}).then((result) => {
+    return Q.ninvoke(childProcess, 'exec', `"${script}"`, {}).then((result) => {
       const version = result[0];
       const versionCleaned = version.replace(/\r?\n|\r/g, '');
       return {platform: platform, version: versionCleaned};
