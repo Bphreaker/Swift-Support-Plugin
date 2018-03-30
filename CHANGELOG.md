@@ -1,5 +1,23 @@
 # Change Log
 
+## [1.7.2](https://github.com/akofman/cordova-plugin-add-swift-support/tree/1.7.2) (2018-03-30)
+[Full Changelog](https://github.com/akofman/cordova-plugin-add-swift-support/compare/1.7.1...1.7.2)
+
+**Closed issues:**
+
+- Implement catching promise rejections [\#51](https://github.com/akofman/cordova-plugin-add-swift-support/issues/51)
+- \*-Briding-Header.h not used [\#48](https://github.com/akofman/cordova-plugin-add-swift-support/issues/48)
+- SWIFT\_VERSION build setting not being applied @1.7.1 [\#47](https://github.com/akofman/cordova-plugin-add-swift-support/issues/47)
+- Unhandled promise rejection \(rejection id: 1\): Error: Cannot find module '../cordova/platform\_metadata' [\#44](https://github.com/akofman/cordova-plugin-add-swift-support/issues/44)
+- Can not restore this plugin when using cordova-cli@8.0.0  [\#43](https://github.com/akofman/cordova-plugin-add-swift-support/issues/43)
+- Hook won't trigger [\#40](https://github.com/akofman/cordova-plugin-add-swift-support/issues/40)
+- Error adding cordova-plugin-add-swift-support [\#39](https://github.com/akofman/cordova-plugin-add-swift-support/issues/39)
+- OSX support [\#19](https://github.com/akofman/cordova-plugin-add-swift-support/issues/19)
+
+**Merged pull requests:**
+
+- Fix for cordova projects located in paths with spaces [\#52](https://github.com/akofman/cordova-plugin-add-swift-support/pull/52) ([TheLiquidSky](https://github.com/TheLiquidSky))
+
 ## [1.7.1](https://github.com/akofman/cordova-plugin-add-swift-support/tree/1.7.1) (2017-12-22)
 [Full Changelog](https://github.com/akofman/cordova-plugin-add-swift-support/compare/1.7.0...1.7.1)
 
@@ -8,11 +26,6 @@
 - SWIFT\_VERSION build setting not being applied [\#42](https://github.com/akofman/cordova-plugin-add-swift-support/issues/42)
 - Node.JS 8.X Support [\#38](https://github.com/akofman/cordova-plugin-add-swift-support/issues/38)
 - Missing tag and changelog for 1.7.0 [\#33](https://github.com/akofman/cordova-plugin-add-swift-support/issues/33)
-- Unhandled promise rejection \(rejection id: 1\): Error: Cannot find module '../cordova/platform\_metadata' [\#44](https://github.com/akofman/cordova-plugin-add-swift-support/issues/44)
-- Can not restore this plugin when using cordova-cli@8.0.0  [\#43](https://github.com/akofman/cordova-plugin-add-swift-support/issues/43)
-- Hook won't trigger [\#40](https://github.com/akofman/cordova-plugin-add-swift-support/issues/40)
-- Error adding cordova-plugin-add-swift-support [\#39](https://github.com/akofman/cordova-plugin-add-swift-support/issues/39)
-- OSX support [\#19](https://github.com/akofman/cordova-plugin-add-swift-support/issues/19)
 
 **Merged pull requests:**
 
