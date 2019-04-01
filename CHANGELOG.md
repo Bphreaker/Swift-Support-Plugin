@@ -1,5 +1,23 @@
 # Change Log
 
+## [2.0.1](https://github.com/akofman/cordova-plugin-add-swift-support/tree/2.0.1) (2019-04-01)
+[Full Changelog](https://github.com/akofman/cordova-plugin-add-swift-support/compare/2.0.0...2.0.1)
+
+**Closed issues:**
+
+- add-swift-support.js of v2.0 is missing on npm [\#58](https://github.com/akofman/cordova-plugin-add-swift-support/issues/58)
+- Support cordova-cli 9.0.0 - requireCordovaModule deprecation [\#56](https://github.com/akofman/cordova-plugin-add-swift-support/issues/56)
+- Swift 4 support [\#55](https://github.com/akofman/cordova-plugin-add-swift-support/issues/55)
+- Swift 4 is failing with latest cordova [\#50](https://github.com/akofman/cordova-plugin-add-swift-support/issues/50)
+
+## [2.0.0](https://github.com/akofman/cordova-plugin-add-swift-support/tree/2.0.0) (2019-04-01)
+[Full Changelog](https://github.com/akofman/cordova-plugin-add-swift-support/compare/1.7.2...2.0.0)
+
+**Merged pull requests:**
+
+- refactor: update tooling, add support for Cordova v9 [\#57](https://github.com/akofman/cordova-plugin-add-swift-support/pull/57) ([timbru31](https://github.com/timbru31))
+- Document where to specify Swift version preference [\#53](https://github.com/akofman/cordova-plugin-add-swift-support/pull/53) ([eladnava](https://github.com/eladnava))
+
 ## [1.7.2](https://github.com/akofman/cordova-plugin-add-swift-support/tree/1.7.2) (2018-03-30)
 [Full Changelog](https://github.com/akofman/cordova-plugin-add-swift-support/compare/1.7.1...1.7.2)
 
