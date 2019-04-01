@@ -14,7 +14,7 @@ You can add this plugin directly to your project:
 
 Or add it as a dependency into your own plugin:
 
-`<dependency id="cordova-plugin-add-swift-support" version="1.7.2"/>`
+`<dependency id="cordova-plugin-add-swift-support" version="2.0.1"/>`
 
 By default, the Swift 4 support is added but the legacy version (2.3) can still be configured as a preference, inside the project's `config.xml`, within the `<platform name="ios">` section:
 
