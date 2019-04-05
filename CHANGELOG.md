@@ -1,5 +1,12 @@
 # Change Log
 
+## [2.0.2](https://github.com/akofman/cordova-plugin-add-swift-support/tree/2.0.2) (2019-04-05)
+[Full Changelog](https://github.com/akofman/cordova-plugin-add-swift-support/compare/2.0.1...2.0.2)
+
+**Merged pull requests:**
+
+- Script needs to be quoted [\#59](https://github.com/akofman/cordova-plugin-add-swift-support/pull/59) ([shivan](https://github.com/shivan))
+
 ## [2.0.1](https://github.com/akofman/cordova-plugin-add-swift-support/tree/2.0.1) (2019-04-01)
 [Full Changelog](https://github.com/akofman/cordova-plugin-add-swift-support/compare/2.0.0...2.0.1)
 
